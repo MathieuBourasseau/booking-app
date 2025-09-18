@@ -36,7 +36,7 @@ app.set('views', './src/views');
 app.set('layout', 'layouts/app');
 
 
-app.use(homeRouter);
+app.use(mainRouter);
 
 // Test pour savoir si le serveur est bien branché au port
 app.listen(PORT, () => {
