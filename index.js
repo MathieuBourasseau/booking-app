@@ -3,6 +3,8 @@ import 'dotenv/config';
 import { xss } from "express-xss-sanitizer";
 import expressLayouts from "express-ejs-layouts";
 
+import { homeRouter } from './src/routers/home.router.js';
+
 
 // Création du serveur express
 const app = express();
@@ -34,9 +36,7 @@ app.set('views', './src/views');
 app.set('layout', 'layouts/app');
 
 
-app.get('/', (req, res) => {
-    res.render('pages/home', {title : "Accueil"});
-});
+app.use(homeRouter);
 
 // Test pour savoir si le serveur est bien branché au port
 app.listen(PORT, () => {
