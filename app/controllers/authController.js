@@ -87,6 +87,13 @@ export const authController = {
             return res.render('pages/login', { error : "Password is incorrect." })
         }
 
+        // Via le module session d'express on créé une session
+        // Le client pourra ainsi stocker ces infos dans un cookies
+        req.session.user = {
+            id: user.id,
+            username: user.username
+        };
+        
         // En cas de succès de connexion on renvoie vers la page d'accueil
         res.redirect('/')
     }

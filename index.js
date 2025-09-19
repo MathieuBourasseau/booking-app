@@ -2,12 +2,23 @@ import express from 'express';
 import 'dotenv/config';
 import { xss } from "express-xss-sanitizer";
 import expressLayouts from "express-ejs-layouts";
-
+import session from 'express-session';
 import { mainRouter } from './app/routers/index.js';
 
 
 // Création du serveur express
 const app = express();
+
+
+// Express vérifie si le navigateur a un cookie
+// En l'occurence ici il vérifie si on a une session ouverte
+
+app.use(session({
+    secret: process.env.APP_SECRET,
+    resave: false, // n'enregistre pas la session à chaque requête si rien ne change
+    saveUninitialized: false, 
+    cookie: { secure: process.env.APP_ENV === 'production'}
+}));
 
 // Attribution du port du serveur express
 const PORT = process.env.PORT || 3000;
