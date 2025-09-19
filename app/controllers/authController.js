@@ -52,7 +52,39 @@ export const authController = {
     },
 
     // Méthode pour se connecter 
-    login (req,res) {
+    async login (req,res) {
+
+        // Récupération des données contenues dans la requête
+        // Vérification de celles-ci en les passant par le schéma
+        const {error, value} = userSchema.validate(req.body);
+
+        if (error) {
+            return res.render('pages/login', {
+                title: "Connexion",
+                error: "username or password is not correct."
+            });
+        }
+
+        const { username, password } = req.body;
+
+        // On vérifie ensuite que l'utilisateur existe bien dans la BDD
+        const user = await User.findOne({ where : {username : username}} );
+
+        // Si l'user n'existe pas on envoie un message d'erreur
+        if(!user){
+            return res.render('pages/login', { error : "User does not exist." });
+        }
+
+        // On vérifie le mot de passe : 
+        const isPasswordValid = await argon2.verify(user.username, password);
+
+        if(!isPasswordValid) {
+            return res.render('pages/login', { error : "Password is incorrect." })
+        }
+
+        // En cas de succès de connexion on renvoie vers la page d'accueil
+        res.redirect('/')
+
         res.render('pages/login', { title: "Connexion"});
     }
 }
