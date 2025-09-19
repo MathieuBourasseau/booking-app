@@ -3,7 +3,7 @@ import 'dotenv/config';
 import { xss } from "express-xss-sanitizer";
 import expressLayouts from "express-ejs-layouts";
 
-import { homeRouter } from './src/routers/home.router.js';
+import { mainRouter } from './src/routers/index.js';
 
 
 // Création du serveur express
