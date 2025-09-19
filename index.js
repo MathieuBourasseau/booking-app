@@ -20,6 +20,13 @@ app.use(session({
     cookie: { secure: process.env.APP_ENV === 'production'}
 }));
 
+// On stocke la session dans une variable locale
+// Elle est acccessible dans chacun des fichiers ou middlewares
+app.use((req, res, next) => {
+    res.locals.session = req.session;
+    next() // permet de passer au middleware suivant
+})
+
 // Attribution du port du serveur express
 const PORT = process.env.PORT || 3000;
 

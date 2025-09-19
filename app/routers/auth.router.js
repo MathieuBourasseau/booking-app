@@ -1,13 +1,16 @@
 import { Router } from "express";
 import { authController } from "../controllers/authController.js";
+import { onlyGuest, onlyAuthenticated } from "../middlewares/authenticate.middleware.js";
 
 export const authRouter = Router();
 
 // Routes vers le controller d'authentification
-authRouter.get('/register', authController.showForm);
+// Protégée par le middleware onlyGuest
+authRouter.get('/register', onlyGuest, authController.showForm);
 
 // Route pour s'inscrire via le formulaire
-authRouter.post('/register', authController.register);
+// Protégée par le middleware onlyGuest
+authRouter.post('/register', onlyGuest, authController.register);
 
-authRouter.get('/login', authController.showLoginForm);
-authRouter.post('/login', authController.login);
+authRouter.get('/login', onlyGuest, authController.showLoginForm);
+authRouter.post('/login', onlyGuest, authController.login);

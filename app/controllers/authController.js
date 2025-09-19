@@ -53,6 +53,12 @@ export const authController = {
 
     // Affiche le formulaire de connexion 
     showLoginForm (req, res){
+
+        // Si on est connecté, on empêche l'accès à la partie création d'un compte.
+        if (req.session.user){
+            return res.redirect('/')
+        }
+
         res.render('pages/login', { title : "Connexion" });
     },
 
@@ -93,7 +99,8 @@ export const authController = {
             id: user.id,
             username: user.username
         };
-        
+
+        console.log("User is connected ! ✅")
         // En cas de succès de connexion on renvoie vers la page d'accueil
         res.redirect('/')
     }
