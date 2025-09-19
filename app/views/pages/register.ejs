@@ -1,4 +1,9 @@
-<form action="/auth/register" method="post">
+<form action="/register" method="post">
+
+    <% if (typeof error !== 'undefined' && error) { %>
+        <p>Error : <%= error %></p>
+    <% } %>
+
     <h1>Créer votre compte</h1>
     <fieldset>
         <div class="field-container">
