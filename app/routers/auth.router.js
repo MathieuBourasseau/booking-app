@@ -9,4 +9,5 @@ authRouter.get('/register', authController.showForm);
 // Route pour s'inscrire via le formulaire
 authRouter.post('/register', authController.register);
 
-authRouter.get('/login', authController.login);
+authRouter.get('/login', authController.showLoginForm);
+authRouter.post('/login', authController.login);

@@ -51,6 +51,10 @@ export const authController = {
         res.redirect('/login');
     },
 
+    showLoginForm (req, res){
+        res.render('pages/login', { title : "Connexion" });
+    },
+
     // Méthode pour se connecter 
     async login (req,res) {
 
