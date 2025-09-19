@@ -8,6 +8,7 @@ export const authController = {
 
     // Méthode pour créer un compte
     register (req, res) {
+        
         res.render('pages/register', {title : "Inscription"});
     },
 

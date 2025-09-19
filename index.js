@@ -3,7 +3,7 @@ import 'dotenv/config';
 import { xss } from "express-xss-sanitizer";
 import expressLayouts from "express-ejs-layouts";
 
-import { mainRouter } from './src/routers/index.js';
+import { mainRouter } from './app/routers/index.js';
 
 
 // Création du serveur express
@@ -30,7 +30,7 @@ app.set("layout", "./src/views/layouts/app");
 app.set('view engine', 'ejs');
 
 // Indique le chemin des views à afficher
-app.set('views', './src/views');
+app.set('views', './app/views');
 
 // Indiquer le chemin du layout à afficher 
 app.set('layout', 'layouts/app');
