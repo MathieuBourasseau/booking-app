@@ -1,1 +1,14 @@
-<h1>Bienvenu sur la page d'enregistrement ! </h1>
+<form action="/auth/register" method="post">
+    <h1>Créer votre compte</h1>
+    <fieldset>
+        <div class="field-container">
+            <label for="username" class="label-content">Nom d'utilisateur :</label>
+            <input type="text" id="username" name="username">
+        </div>
+         <div class="field-container">
+            <label for="password" class="label-content">Mot de passe :</label>
+            <input type="password" id="password" name="password">
+        </div>
+        <button class="subscribe-btn">s'inscrire</button>
+    </fieldset>
+</form>
