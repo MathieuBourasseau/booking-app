@@ -65,7 +65,7 @@ export const authController = {
             });
         }
 
-        const { username, password } = req.body;
+        const { username, password } = value;
 
         // On vérifie ensuite que l'utilisateur existe bien dans la BDD
         const user = await User.findOne({ where : {username : username}} );
