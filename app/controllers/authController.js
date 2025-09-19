@@ -51,6 +51,7 @@ export const authController = {
         res.redirect('/login');
     },
 
+    // Affiche le formulaire de connexion 
     showLoginForm (req, res){
         res.render('pages/login', { title : "Connexion" });
     },
@@ -80,7 +81,7 @@ export const authController = {
         }
 
         // On vérifie le mot de passe : 
-        const isPasswordValid = await argon2.verify(user.username, password);
+        const isPasswordValid = await argon2.verify(user.password, password);
 
         if(!isPasswordValid) {
             return res.render('pages/login', { error : "Password is incorrect." })
@@ -88,7 +89,5 @@ export const authController = {
 
         // En cas de succès de connexion on renvoie vers la page d'accueil
         res.redirect('/')
-
-        res.render('pages/login', { title: "Connexion"});
     }
 }
