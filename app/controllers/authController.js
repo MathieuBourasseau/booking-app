@@ -105,6 +105,7 @@ export const authController = {
         res.redirect('/')
     },
 
+    // Suppression de la session 
     logout (req,res) {
         req.session.destroy();
         res.redirect('/login')
