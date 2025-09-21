@@ -18,7 +18,7 @@ export function onlyAuthenticated (req, res, next) {
     // Si l'utilisateur n'est pas connecté
     // on l'empêche d'accéder au dashboard
     if(!req.session.user) {
-        return res.redirect('/')
+        return res.redirect('/login')
     }
 
     next(); // on passe au middleware suivant
