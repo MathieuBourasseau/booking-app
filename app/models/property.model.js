@@ -5,9 +5,9 @@ import { DataTypes, Model } from "sequelize";
 // l'id est géré automatiquement par sequelize
 // le timestamps également car définit dans sequelize.client.js
 
-export class Properties extends Model {}
+export class Property extends Model {}
 
-Properties.init(
+Property.init(
     {
         name : {
             type: DataTypes.TEXT,
@@ -25,6 +25,6 @@ Properties.init(
     },
     {
         sequelize,
-        tableName: "properties"
+        tableName: "property"
     }
 );

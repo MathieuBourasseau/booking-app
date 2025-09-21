@@ -4,9 +4,9 @@ import { DataTypes, Model } from "sequelize";
 // Création du model bookings
 // id + timestamps générés automatiquement par sequelize
 
-class Bookings extends Model {}
+export class Booking extends Model {}
 
-Bookings.init(
+Booking.init(
     {
         start_date: {
             type: DataTypes.DATEONLY,
@@ -20,6 +20,6 @@ Bookings.init(
     },
     {
         sequelize,
-        tableName: "bookings"
+        tableName: "booking"
     }
 );
