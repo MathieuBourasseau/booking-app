@@ -1,9 +1,15 @@
-<h1>Voici tous les biens disponibles actuellement : </h1>
+<% if(properties && properties.length) { %>
+    <h1>Voici tous les biens disponibles actuellement : </h1>
 
-<% properties.forEach(property => { %>
+    <% properties.forEach(property => { %>
+            
+        <h2><%= property.name %></h2>
+        <p><%= property.description %></p>
+        <span><%= property.price_per_night %> €</span>
 
-    <h2><%= property.name %></h2>
-    <p><%= property.description %></p>
-    <span><%= property.price_per_night %> €</span>
+    <% }) %>
 
-<% }) %>
+<% } else { %>
+    <h2>Aucun bien n'est disponible actuellement...</h2>
+<% } %>
+    
