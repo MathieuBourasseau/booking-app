@@ -30,19 +30,18 @@ app.use((req, res, next) => {
 // Attribution du port du serveur express
 const PORT = process.env.PORT || 3000;
 
-// Sécurise les données envoyées via formulaire pour éviter les injections SQL
-app.use(xss());
-
 // Transforme les données json en objets js
 app.use(express.json());
 
 // Permet de lire et récupérer les requêtes des formulaires HTML
 app.use(express.urlencoded({ extended: true }));
 
+// Sécurise les données envoyées via formulaire pour éviter les injections SQL
+app.use(xss());
+
 // Permet d'afficher des views à partir d'un layout sans répétition du code
 // le contenu de la view sera généré en fonction de la view indiquée
 app.use(expressLayouts);
-app.set("layout", "./src/views/layouts/app");
 
 // EJS permet d'afficher les views
 app.set('view engine', 'ejs');
@@ -50,8 +49,8 @@ app.set('view engine', 'ejs');
 // Indique le chemin des views à afficher
 app.set('views', './app/views');
 
-// Indiquer le chemin du layout à afficher 
-app.set('layout', 'layouts/app');
+//Indique le chemin du layout relatif à views
+app.set("layout", "./layouts/app");
 
 
 app.use(mainRouter);

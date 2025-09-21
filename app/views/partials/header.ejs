@@ -2,11 +2,20 @@
     <h1>Booking App</h1>
     <nav>
         <a href="/" class="home">Accueil</a>
-        <a href="/login" class="login">Connexion</a>
-        <a href="/register" class="register">Inscription</a>
-    </nav>
 
-    <% if(typeof session.user !== 'undefined') { %>
-        <p>Vous êtes connecté en tant que : <%= session.user.username %></p>
-    <% } %>
+        <!-- Si l'utilisateur est connecté :  -->
+        <% if(typeof session.user !== 'undefined') { %>
+
+            <p>Vous êtes connecté en tant que : <span><%= session.user.username %></span></p>
+            <a href="">Se déconnecter</a>
+
+        <!-- S'il n'est pas connecté :  -->
+        <% } else { %>
+
+            <a href="/login" class="login">Connexion</a>
+            <a href="/register" class="register">Inscription</a>
+
+        <% } %>
+    </nav>
+    
 </header>
