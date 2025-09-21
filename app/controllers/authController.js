@@ -1,5 +1,5 @@
 import Joi from "joi";
-import { userSchema } from "../schemas/user.schema.js";
+import { userSchema, propertySchema, bookingSchema } from "../schemas/index.js";
 import { User } from "../models/user.model.js";
 import argon2 from "argon2";
 
