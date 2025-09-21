@@ -7,7 +7,7 @@
         <% if(typeof session.user !== 'undefined') { %>
 
             <p>Vous êtes connecté en tant que : <span><%= session.user.username %></span></p>
-            <a href="">Se déconnecter</a>
+            <a href="/logout">Se déconnecter</a>
 
         <!-- S'il n'est pas connecté :  -->
         <% } else { %>

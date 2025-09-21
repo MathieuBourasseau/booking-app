@@ -103,5 +103,10 @@ export const authController = {
         console.log("User is connected ! ✅")
         // En cas de succès de connexion on renvoie vers la page d'accueil
         res.redirect('/')
+    },
+
+    logout (req,res) {
+        req.session.destroy();
+        res.redirect('/login')
     }
 }
