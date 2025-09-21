@@ -1,0 +1,23 @@
+<form action="/properties/create" method="post">
+
+    <% if (typeof error !== 'undefined' && error) { %>
+        <p>Error : <%= error %></p>
+    <% } %>
+
+    <h1>Ajouter un bien</h1>
+    <fieldset>
+        <div class="field-container">
+            <label for="name" class="label-content">Titre :</label>
+            <input type="text" id="name" name="name" placeholder="La Maison des Amis">
+        </div>
+        <div class="field-container">
+            <label for="description" class="label-content">Description : </label>
+            <textarea name="description" id="description" placeholder="Description de votre bien"></textarea>
+        </div>
+         <div class="field-container">
+            <label for="price_per_night" class="label-content">Prix par nuit :</label>
+            <input type="number" id="price_per_night" name="price_per_night" placeholder="50.00">
+        </div>
+        <button class="subscribe-btn">ajouter</button>
+    </fieldset>
+</form>

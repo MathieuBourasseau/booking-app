@@ -36,6 +36,11 @@ export const propertiesController = {
         }
 
         // Si il existe on affiche ce bien dans la view 
-        res.render('pages/properties/show', {title : property.name, property});
-    }
+        res.render('pages/properties/show', { title : property.name, property });
+    },
+
+    async showPropertyForm(req,res) {
+        res.render('pages/properties/propertyForm', { title : "Ajouter un bien" });
+    },
+
 }

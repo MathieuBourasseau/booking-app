@@ -5,8 +5,11 @@ import { checkId } from "../middlewares/checkId.middleware.js";
 
 export const propertiesRouter = Router();
 
-// Route pour accéder à toutes les propriétés
+// Route pour accéder à tous les biens
 propertiesRouter.get('/properties', propertiesController.getAll);
+
+// Route pour accédder au formulaire d'ajout d'un bien
+propertiesRouter.get('/properties/create', propertiesController.showPropertyForm)
 
 // Accéder à une propriété par son id 
 propertiesRouter.get('/properties/:id', checkId, propertiesController.getById)
