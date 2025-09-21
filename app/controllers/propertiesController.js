@@ -1,3 +1,4 @@
+import Joi from "joi";
 import { Property } from "../models/index.js"
 
 export const propertiesController = {
@@ -14,11 +15,27 @@ export const propertiesController = {
             ]
         });
 
-        res.render('pages/properties', { title: "Biens", properties })
+        res.render('pages/properties/allProperties', { title: "Biens", properties })
     },
 
     // Accéder à un bien par son id
     async getById(req,res) {
- 
+        
+        // On récupère l'id 
+        const { id } = req.params;
+
+        // On cherche dans la BDD si un bien existe avec cet id
+        const property = await Property.findByPk(id);
+
+        // Si ce n'est pas le cas on renvoie une erreur
+        if(!property) {
+            return res.render('pages/properties', {
+                title: "Biens",
+                error: "this id property does not exist."
+            });
+        }
+
+        // Si il existe on affiche ce bien dans la view 
+        res.render('pages/properties/show', {title : property.name, property});
     }
 }
