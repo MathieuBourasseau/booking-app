@@ -29,7 +29,7 @@ export const propertiesController = {
 
         // Si ce n'est pas le cas on renvoie une erreur
         if(!property) {
-            return res.render('pages/properties', {
+            return res.render('pages/properties/show', {
                 title: "Biens",
                 error: "this id property does not exist."
             });

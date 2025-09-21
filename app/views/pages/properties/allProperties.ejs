@@ -1,1 +1,9 @@
-Voici les biens disponibles ! 
+<h1>Voici tous les biens disponibles actuellement : </h1>
+
+<% properties.forEach(property => { %>
+
+    <h2><%= property.name %></h2>
+    <p><%= property.description %></p>
+    <span><%= property.price_per_night %> €</span>
+
+<% }) %>
