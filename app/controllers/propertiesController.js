@@ -14,7 +14,11 @@ export const propertiesController = {
             ]
         });
 
-        res.render('pages/properties', { title: "Bien", properties })
+        res.render('pages/properties', { title: "Biens", properties })
     },
 
+    // Accéder à un bien par son id
+    async getById(req,res) {
+ 
+    }
 }
