@@ -58,7 +58,7 @@ export const propertiesController = {
 
         const newProperty = await Property.create({name, description, price_per_night});
 
-        res.redirect(`/properties/${newProperty.id}`, { title: "Ajout réussi !", newProperty });
+        res.redirect(`/properties/${newProperty.id}`);
     },
 
     async deleteById (req, res) {

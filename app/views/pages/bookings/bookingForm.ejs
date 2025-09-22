@@ -2,6 +2,14 @@
 
 <p>Bien : <a href="/properties/<%= property.id %>"><%= property.name %></a></p>
 
+<% if (typeof error !== 'undefined' && error) { %>
+
+  <div >
+    <strong>Erreur :</strong> <%= error %>
+  </div>
+  
+<% } %>
+
 <form method="post" action="/bookings/new/<%= property.id %>">
   <div>
     <label for="start_date">Date d’arrivée</label>
@@ -16,4 +24,4 @@
   <button type="submit">Réserver</button>
 </form>
 
-<p><a href="/properties/<%= property.id %>">← Retour au bien</a></p>
+<p><a href="/properties/<%= property.id %>">Retour au bien</a></p>
