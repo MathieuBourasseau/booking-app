@@ -53,17 +53,29 @@ app.set('views', './app/views');
 app.set("layout", "layouts/app");
 
 app.use((req, res, next) => {
-  if (typeof res.locals.title === "undefined") res.locals.title = "Booking App";
-  next();
+  if (typeof res.locals.title === "undefined") {
+    res.locals.title = "Booking App" };
+    next();
 });
 
 app.use(mainRouter);
 
+// Middleware de gestion des pages introuvables
 app.use((req, res) => {
   res.status(404).render("pages/404", {
     title: "Introuvable",
     url: req.originalUrl,
   });
+});
+
+// Middleware de gestion des autres erreurs
+app.use((err, _req, res, _next) => {
+
+  // On affiche l'erreur en console pour le débug
+  console.error('[500]', err);
+  if (res.headersSent) return;
+  const errorId = Date.now().toString(36);
+  res.status(500).render('pages/500', { title : "Erreur serveur", errorId });
 });
 
 
