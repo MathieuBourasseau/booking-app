@@ -10,7 +10,11 @@
         <a href="/properties/<%= booking.property.id %>"><%= booking.property.name %></a>
         <p>Réservation du : <%= booking.start_date %> au <%= booking.end_date %></p>
         <p>Prix : <%= (+booking.property.price_per_night).toFixed(2) %> € / nuit</p>
+        <form method="post" action="/bookings/<%= booking.id %>" onsubmit="return confirm('Annuler cette réservation ?');">
+          <button type="submit">Annuler</button>
+        </form>
       </li>
+
     <% }) %>
 
   </ul>

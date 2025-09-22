@@ -112,4 +112,23 @@ export const bookingsController = {
 
         return res.redirect('/bookings/me', { title : "Mes réservations", property });
     },
+
+    async cancel (req,res) {
+
+        const { id } = req.params;
+
+        const booking = await Booking.findByPk(id);
+
+        if (!booking) {
+            return res.status(404).render("pages/404", { title: "Introuvable" });
+        }
+
+        if (booking.user_id !== req.session.user.id) {
+            return res.status(403).render("pages/404", { title: "Introuvable" });
+        }
+
+        await booking.destroy();
+
+        return res.redirect(303, '/bookings/me');
+    },
 }

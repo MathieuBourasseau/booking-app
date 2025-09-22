@@ -76,6 +76,6 @@ export const propertiesController = {
         // Suppression du bien demandé
         await property.destroy();
 
-        return res.redirect(303, '/properties');
+        return res.redirect('/properties');
     }
 }

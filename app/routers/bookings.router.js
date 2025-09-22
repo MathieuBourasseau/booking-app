@@ -13,3 +13,6 @@ bookingRouter.get('/bookings/new/:propertyId', onlyAuthenticated, bookingsContro
 
 // Route pour effectuer une nouvelle réservation
 bookingRouter.post('/bookings/new/:propertyId', onlyAuthenticated, bookingsController.booking);
+
+// Route pour annuler une réservation 
+bookingRouter.post('/bookings/:id', onlyAuthenticated, checkId, bookingsController.cancel);
