@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { authController } from "../controllers/authController.js";
+import { authController } from "../controllers/index.js";
 import { onlyGuest, onlyAuthenticated } from "../middlewares/authenticate.middleware.js";
 
 export const authRouter = Router();

@@ -23,4 +23,26 @@ export const bookingsController = {
         res.status(200).render('pages/bookings/allBookings', { title: "Mes réservations", bookings })
     },
 
+    async showBookingForm (req, res){
+        
+        // On récupère l'id du bien sélectionné
+        const propertyId = parseInt(req.params.propertyId, 10);
+
+        if (isNaN(propertyId) || propertyId <= 0) {
+            return res.status(404).render("pages/404", { title: "Introuvable" });
+        }
+
+        // On vérifie qu'il existe bien en BDD
+        const property = await Property.findByPk(propertyId);
+
+        if (!property) {
+            return res.status(404).render("pages/404", { title: "Introuvable" });
+        }
+
+        // On affiche le formulaire 
+        return res.status(200).render("pages/bookings/bookingForm", { title: `Réserver ${property.name}`, property });
+    },
+
+
+
 }

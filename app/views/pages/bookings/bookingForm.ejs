@@ -1,0 +1,19 @@
+<h1><%= title %></h1>
+
+<p>Bien : <a href="/properties/<%= property.id %>"><%= property.name %></a></p>
+
+<form method="post" action="/bookings/new/<%= property.id %>">
+  <div>
+    <label for="start_date">Date d’arrivée</label>
+    <input type="date" id="start_date" name="start_date" required>
+  </div>
+
+  <div>
+    <label for="end_date">Date de départ</label>
+    <input type="date" id="end_date" name="end_date" required>
+  </div>
+
+  <button type="submit">Réserver</button>
+</form>
+
+<p><a href="/properties/<%= property.id %>">← Retour au bien</a></p>

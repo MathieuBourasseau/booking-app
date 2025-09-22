@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { propertiesController } from "../controllers/propertiesController.js";
+import { propertiesController } from "../controllers/index.js";
 import { onlyGuest, onlyAuthenticated } from "../middlewares/authenticate.middleware.js";
 import { checkId } from "../middlewares/checkId.middleware.js";
 
