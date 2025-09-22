@@ -1,0 +1,23 @@
+<h1>Mes réservations</h1>
+
+<% if (bookings && bookings.length) { %>
+
+  <ul>
+
+    <% bookings.forEach((booking) => { %>
+
+      <li>
+        <a href="/properties/<%= booking.property.id %>"><%= booking.property.name %></a>
+        <p>Réservation du : <%= booking.start_date %> au <%= booking.end_date %></p>
+        <p>Prix : <%= (+booking.property.price_per_night).toFixed(2) %> € / nuit</p>
+      </li>
+    <% }) %>
+
+  </ul>
+
+<% } else { %>
+
+  <p>Aucune réservation pour le moment.</p>
+  <p><a href="/properties">Voir les biens</a></p>
+
+<% } %>
