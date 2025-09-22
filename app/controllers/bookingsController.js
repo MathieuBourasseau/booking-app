@@ -62,6 +62,8 @@ export const bookingsController = {
         // On vérifie les données envoyées dans la requête avec le schéma adéquat
         const { error, value } = bookingSchema.validate(req.body);
 
+
+
         if (error) {
             return res.status(400).render('pages/bookings/bookingForm', { 
                 title: `Réserver ${property.name}`,
@@ -72,8 +74,23 @@ export const bookingsController = {
 
         const { start_date, end_date } = value;
 
+        //On veut vérifier que les dates de réservations ne correspondent pas à des dates passées
+        const today = new Date();
+        today.setHours(0,0,0,0);
+
+        const start = new Date(start_date);
+        const end = new Date (end_date);
+
+        if (start < today) {
+            return res.status(400).render('pages/bookings/bookingForm', {
+            title: `Réserver ${property.name}`,
+            property,
+            error: "La date de début ne peut pas être dans le passé.",
+            });
+        }
+
         // Eviter les incohérences lors de la réservation 
-        if (start_date >= end_date) {
+        if (start >= end) {
             return res.status(400).render('pages/bookings/bookingForm', {
                 title: `Réserver ${property.name}`,
                 error: "End date must be superior to start date.",
@@ -110,9 +127,10 @@ export const bookingsController = {
             end_date,
         });
 
-        return res.redirect('/bookings/me', { title : "Mes réservations", property });
+        return res.redirect('/bookings/me');
     },
 
+    // Annulation de la réservation
     async cancel (req,res) {
 
         const { id } = req.params;
