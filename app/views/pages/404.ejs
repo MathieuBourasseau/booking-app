@@ -1,0 +1,16 @@
+<%
+const code = typeof statusCode !== "undefined" ? statusCode : 404;
+const msg  = typeof message !== "undefined" ? message : "La page que vous cherchez n'existe pas.";
+%>
+
+<h1>404</h1>
+<p><%= msg %></p>
+
+<% if (typeof url !== "undefined") { %>
+<p>URL demandée : <code><%= url %></code></p>
+<% } %>
+
+<p>
+<a href="/">← Retour à l’accueil</a>
+</p>
+

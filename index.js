@@ -50,10 +50,22 @@ app.set('view engine', 'ejs');
 app.set('views', './app/views');
 
 //Indique le chemin du layout relatif à views
-app.set("layout", "./layouts/app");
+app.set("layout", "layouts/app");
 
+app.use((req, res, next) => {
+  if (typeof res.locals.title === "undefined") res.locals.title = "Booking App";
+  next();
+});
 
 app.use(mainRouter);
+
+app.use((req, res) => {
+  res.status(404).render("pages/404", {
+    title: "Introuvable",
+    url: req.originalUrl,
+  });
+});
+
 
 // Test pour savoir si le serveur est bien branché au port
 app.listen(PORT, () => {

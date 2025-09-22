@@ -1,8 +1,13 @@
 <% if (property) { %>
+  <h1><%= property.name %></h1>
+  <p><%= property.description %></p>
+  <p><%= (+property.price_per_night).toFixed(2) %> €</p>
 
-    <h1><%= property.name %></h1>
-    <h2>Description :</h2>
-    <p><%= property.description %></p>
-    <span><%= property.price_per_night %></span>
+  <% if (session && session.user) { %>
+    <form method="post" action="/properties/<%= property.id %>/delete" onsubmit="return confirm('Supprimer ce bien ?');">
+      <button type="submit">Supprimer</button>
+    </form>
+  <% } %>
 
+  <p><a href="/properties">← Retour à la liste</a></p>
 <% } %>

@@ -9,10 +9,13 @@ export const propertiesRouter = Router();
 propertiesRouter.get('/properties', propertiesController.getAll);
 
 // Route pour accédder au formulaire d'ajout d'un bien
-propertiesRouter.get('/properties/create', onlyAuthenticated, propertiesController.showPropertyForm)
+propertiesRouter.get('/properties/create', onlyAuthenticated, propertiesController.showPropertyForm);
 
 // Route pour ajouer un bien 
-propertiesRouter.post('/properties/create', onlyAuthenticated, propertiesController.addProperty)
+propertiesRouter.post('/properties/create', onlyAuthenticated, propertiesController.addProperty);
 
 // Accéder à une propriété par son id 
-propertiesRouter.get('/properties/:id', checkId, propertiesController.getById)
+propertiesRouter.get('/properties/:id', checkId, propertiesController.getById);
+
+// Supprimer un bien 
+propertiesRouter.post("/properties/:id/delete", onlyAuthenticated, checkId, propertiesController.deleteById);
