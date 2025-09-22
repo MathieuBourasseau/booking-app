@@ -60,6 +60,7 @@ app.use((req, res, next) => {
 
 app.use(mainRouter);
 
+
 // Middleware de gestion des pages introuvables
 app.use((req, res) => {
   res.status(404).render("pages/404", {
@@ -71,11 +72,10 @@ app.use((req, res) => {
 // Middleware de gestion des autres erreurs
 app.use((err, _req, res, _next) => {
 
-  // On affiche l'erreur en console pour le débug
-  console.error('[500]', err);
-  if (res.headersSent) return;
   const errorId = Date.now().toString(36);
-  res.status(500).render('pages/500', { title : "Erreur serveur", errorId });
+  console.error('[500]', errorId, err);
+  if (res.headersSent) return;
+  return res.status(500).render('pages/500', { title : "Erreur serveur", errorId });
 });
 
 

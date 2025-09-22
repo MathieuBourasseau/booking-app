@@ -93,7 +93,7 @@ export const bookingsController = {
         if (start >= end) {
             return res.status(400).render('pages/bookings/bookingForm', {
                 title: `Réserver ${property.name}`,
-                error: "End date must be superior to start date.",
+                error: "La date de début et de fin ne doivent pas être les mêmes.",
                 property
             });
         }
