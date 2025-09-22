@@ -1,21 +1,39 @@
-<header>
-    <h1>Booking App</h1>
-    <nav>
-        <a href="/" class="home">Accueil</a>
+<header class="sticky top-0 z-40 border-b bg-white/80 backdrop-blur">
+  <nav class="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
+    <a href="/" class="text-lg sm:text-xl font-semibold text-primary hover:opacity-90">
+      Booking App
+    </a>
 
-        <!-- Si l'utilisateur est connecté :  -->
-        <% if(typeof session.user !== 'undefined') { %>
-            
-            <p>Vous êtes connecté en tant que : <span><%= session.user.username %></span></p>
-            <a href="/logout">Se déconnecter</a>
+    <div class="flex items-center gap-3 sm:gap-5">
+      <a href="/" class="text-sm text-gray-700 hover:text-primary">Accueil</a>
 
-        <!-- S'il n'est pas connecté :  -->
-        <% } else { %>
+      <% if (session && session.user) { %>
+        <a href="/properties" class="text-sm text-gray-700 hover:text-primary">Biens</a>
+        <a href="/bookings/me" class="text-sm text-gray-700 hover:text-primary">Mes réservations</a>
 
-            <a href="/login" class="login">Connexion</a>
-            <a href="/register" class="register">Inscription</a>
+        <span class="hidden sm:inline-flex items-center gap-2 text-xs text-gray-600">
+          <span class="inline-flex size-6 items-center justify-center rounded-full bg-primary/10 text-primary font-semibold">
+            <%= (session.user.username || '').charAt(0).toUpperCase() %>
+          </span>
+          <span class="truncate max-w-40">Connecté : <strong><%= session.user.username %></strong></span>
+        </span>
 
-        <% } %>
-    </nav>
-    
+        <form method="post" action="/logout">
+          <button
+            class="inline-flex items-center rounded-lg bg-primary px-3 py-1.5 text-white text-sm font-medium hover:bg-primary/90">
+            Se déconnecter
+          </button>
+        </form>
+      <% } else { %>
+        <a href="/login"
+           class="inline-flex items-center rounded-lg bg-primary px-3 py-1.5 text-white text-sm font-medium hover:bg-primary/90">
+          Connexion
+        </a>
+        <a href="/register"
+           class="inline-flex items-center rounded-lg border border-primary/30 px-3 py-1.5 text-sm font-medium text-primary hover:bg-primary/5">
+          Inscription
+        </a>
+      <% } %>
+    </div>
+  </nav>
 </header>
