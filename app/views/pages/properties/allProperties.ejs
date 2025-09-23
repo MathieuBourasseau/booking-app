@@ -1,15 +1,31 @@
-<% if(properties && properties.length) { %>
-    <h1>Voici tous les biens disponibles actuellement : </h1>
+<div class="max-w-4xl mx-auto p-6">
+  <h1 class="text-2xl font-bold text-white [text-shadow:_0_1px_2px_rgb(0_0_0_/0.8)] mb-6">Biens disponibles</h1>
 
-    <% properties.forEach(property => { %>
-            
-        <h2><%= property.name %></h2>
-        <p><%= property.description %></p>
-        <span><%= property.price_per_night %> €</span>
+  <% if(properties && properties.length) { %>
 
-    <% }) %>
+    <div class="space-y-6">
 
-<% } else { %>
-    <h2>Aucun bien n'est disponible actuellement...</h2>
-<% } %>
-    
+      <% properties.forEach(property => { %>
+
+        <div class="bg-white p-4 rounded-md shadow-sm">
+          <h2 class="text-xl font-medium mb-2 text-primary"><%= property.name %></h2>
+          <p class="text-gray-700 mb-2"><%= property.description %></p>
+          <p class="text-gray-700 font-medium">Prix : <%= (+property.price_per_night).toFixed(2) %> € par nuit</p>
+          <a href="/properties/<%= property.id %>" class="mt-3 inline-block px-3 py-1 text-sm text-white bg-primary rounded hover:bg-primary/90">
+            Voir les détails
+          </a>
+        </div>
+
+      <% }) %>
+
+    </div>
+
+  <% } else { %>
+
+    <div class="bg-gray-50 p-6 rounded-md text-center">
+      <h2 class="text-lg font-medium mb-2">Aucun bien disponible actuellement</h2>
+      <p class="text-gray-600">Revenez plus tard pour découvrir nos nouvelles offres.</p>
+    </div>
+
+  <% } %>
+</div>
