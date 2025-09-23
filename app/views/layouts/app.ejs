@@ -21,11 +21,16 @@
 <body class="bg-gray-50">
 
     <%- include('../partials/header') %>
-    <main class="min-h-screen flex flex-col justify-center items-center w-full px-4">
-        <div class="max-w-5xl"> 
-            <%- body %>
-        </div>
-    </main>
+    <main class="min-h-screen flex flex-col justify-center items-center w-full px-4 relative">
+    <!-- Image de fond avec opacité -->
+    <div class="absolute inset-0 bg-[url('/images/main.jpg')] bg-center bg-no-repeat bg-cover brigthness-50"></div>
+
+    <!-- Conteneur pour le contenu (par-dessus l'image) -->
+    <div class="max-w-5xl w-full relative z-10">
+        <%- body %>
+    </div>
+</main>
+
     <%- include('../partials/footer') %>
 
 </body>
