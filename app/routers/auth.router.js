@@ -16,4 +16,4 @@ authRouter.get('/login', onlyGuest, authController.showLoginForm);
 authRouter.post('/login', onlyGuest, authController.login);
 
 // Route pour la déconnexion 
-authRouter.get('/logout', onlyAuthenticated, authController.logout);
+authRouter.post('/logout', onlyAuthenticated, authController.logout);
