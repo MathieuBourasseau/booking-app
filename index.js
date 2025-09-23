@@ -39,6 +39,8 @@ app.use(express.urlencoded({ extended: true }));
 // Sécurise les données envoyées via formulaire pour éviter les injections SQL
 app.use(xss());
 
+app.use(express.static('public'));
+
 // Permet d'afficher des views à partir d'un layout sans répétition du code
 // le contenu de la view sera généré en fonction de la view indiquée
 app.use(expressLayouts);
