@@ -11,9 +11,11 @@
   </div>
 
   <% if (typeof error !== 'undefined' && error) { %>
+
     <div class="p-3 mb-4 bg-red-50 text-red-600 rounded-md">
       <strong>Erreur :</strong> <%= error %>
     </div>
+    
   <% } %>
 
   <form method="post" action="/bookings/new/<%= property.id %>" class="space-y-4">
