@@ -13,6 +13,8 @@ Petite application de gestion de réservations immobilières (biens, réservatio
     - PORT= (port sur lequel brancher le serveur)
     - APP_ENV= (production pour activer le cookie secure)
 
+Remarque : penser à bien remplir les informations ci-dessus sinon le projet ne fonctionnera pas.
+
 3. Créer les tables et insérer des données de démo : 
     - ```npm run db:create```
     - ```npm run db:seed```
