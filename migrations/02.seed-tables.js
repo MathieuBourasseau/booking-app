@@ -10,11 +10,13 @@ console.log('🌱 Seeding …')
 
 // Créations de plusieurs utilisateurs
 const user = await User.findOrCreate({
+    where: { username: "Toto" },
     username: "Toto",
     password: await argon2.hash('azerty')
 });
 
 const user2 = await User.findOrCreate({
+    where: { username: "Jean" },
     username: "Jean",
     password: await argon2.hash('12345')
 });
@@ -48,6 +50,7 @@ const endBookingDate = new Date();
 endBookingDate.setDate(endBookingDate.getDate() + 14);
 
 await Booking.create({
+    where: { user_id: user.id, property_id: property.id },
     start_date : bookingDate(startBookingDate),
     end_date: bookingDate(endBookingDate),
     user_id: user.id,
