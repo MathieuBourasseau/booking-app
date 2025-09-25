@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
+    "start": "npm run db:reset && node index.js",
     "dev": "node --watch index.js",
     "db:create": "node ./migrations/01.create-tables.js",
     "db:seed": "node ./migrations/02.seed-tables.js",
