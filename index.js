@@ -18,18 +18,21 @@ const pgPool = new pg.Pool({
 
 const PgSession = pgSession(session);
 
+app.set('trust proxy', 1)
+
 // Configuration de express-session
 app.use(session({
-  store: new PgSession({
-    pool: pgPool,
-    tableName: 'user_sessions', // Nom de la table pour stocker les sessions
-  }),
+  store: new PgSession({ pool: pgPool, tableName: 'user_sessions', createTableIfMissing: true }),
   secret: process.env.APP_SECRET,
   resave: false,
   saveUninitialized: false,
   cookie: {
-    secure: process.env.APP_ENV === 'production',
+    secure: process.env.APP_ENV === 'production', // true en prod
+    httpOnly: true,
+    sameSite: 'lax',
+    maxAge: 1000 * 60 * 60 * 24 * 1 // durée de 1 jour
   },
+  name: 'sid'
 }));
 
 // On stocke la session dans une variable locale

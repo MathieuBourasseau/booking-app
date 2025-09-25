@@ -23,6 +23,7 @@ Session.init(
   {
     sequelize,
     tableName: "user_sessions",
+    timestamps: false,
   }
 );
 
