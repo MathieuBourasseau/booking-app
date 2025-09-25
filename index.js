@@ -4,20 +4,32 @@ import { xss } from "express-xss-sanitizer";
 import expressLayouts from "express-ejs-layouts";
 import session from 'express-session';
 import { mainRouter } from './app/routers/index.js';
-
+import pg from 'pg'; 
+import pgSession from 'connect-pg-simple';
 
 // Création du serveur express
 const app = express();
 
+// Configuration de la connexion PostgreSQL pour les sessions
+const pgPool = new pg.Pool({
+  connectionString: process.env.DB_URL,
+  ssl: process.env.APP_ENV === 'production' ? { rejectUnauthorized: false } : false,
+});
 
-// Express vérifie si le navigateur a un cookie
-// En l'occurence ici il vérifie si on a une session ouverte
+const PgSession = pgSession(session);
 
+// Configuration de express-session
 app.use(session({
-    secret: process.env.APP_SECRET,
-    resave: false, // n'enregistre pas la session à chaque requête si rien ne change
-    saveUninitialized: false, 
-    cookie: { secure: process.env.APP_ENV === 'production'}
+  store: new PgSession({
+    pool: pgPool,
+    tableName: 'user_sessions', // Nom de la table pour stocker les sessions
+  }),
+  secret: process.env.APP_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: process.env.APP_ENV === 'production',
+  },
 }));
 
 // On stocke la session dans une variable locale
