@@ -9,24 +9,24 @@ const bookingDate = (date) => date.toISOString().slice(0,10);
 console.log('🌱 Seeding …')
 
 // Créations de plusieurs utilisateurs
-const user = await User.create({
+const user = await User.findOrCreatecreate({
     username: "Toto",
     password: await argon2.hash('azerty')
 });
 
-const user2 = await User.create({
+const user2 = await User.findOrCreatecreate({
     username: "Jean",
     password: await argon2.hash('12345')
 });
 
 // Créations de propriétés
-const property = await Property.create({ 
+const property = await Property.findOrCreatecreate({ 
     name: "La villa du Nord", 
     description : "Située à proximité des commerces et à 5 min à pied de la plage.", 
     price_per_night : 70.00 
 });
 
-const property2 = await Property.create({
+const property2 = await Property.findOrCreatecreate({
     name: "Les castors chanteurs",
     description: "Vue montagne, et randonnées à proximité",
     price_per_night: 55.00
