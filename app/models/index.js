@@ -2,6 +2,7 @@ import { sequelize } from "./sequelize.client.js";
 import { Property } from "./property.model.js";
 import { Booking } from "./booking.model.js";
 import { User } from "./user.model.js";
+import { Session } from "./userSession.model.js";
 
 // Gestion des associations entre model 
 
@@ -33,4 +34,4 @@ Booking.belongsTo(Property, {
     as: "property"
 });
 
-export { sequelize, User, Property, Booking };
+export { sequelize, User, Property, Booking, Session };
