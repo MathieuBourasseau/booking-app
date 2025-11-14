@@ -2,6 +2,9 @@
 import { Sequelize } from "sequelize";
 import "dotenv/config";
 
+console.log("RAILWAY ENV → DATABASE_URL =", process.env.DATABASE_URL);
+
+
 const isProduction = process.env.APP_ENV === "production";
 
 export const sequelize = new Sequelize(process.env.DATABASE_URL, {
