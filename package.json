@@ -5,7 +5,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prestart": "",
-    "start": "node index.js",
     "dev": "node --watch index.js",
     "db:create": "node ./migrations/01.create-tables.js",
     "db:seed": "node ./migrations/02.seed-tables.js",
