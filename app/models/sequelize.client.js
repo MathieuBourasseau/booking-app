@@ -2,17 +2,6 @@
 import { Sequelize } from "sequelize";
 import "dotenv/config";
 
-console.log("ENV DEBUG → keys contenant APP / PORT / DATA :");
-console.log(
-  Object.keys(process.env).filter(
-    (k) => k.includes("APP") || k.includes("PORT") || k.includes("DATA")
-  )
-);
-console.log("ENV DEBUG → APP_ENV =", process.env.APP_ENV);
-console.log("ENV DEBUG → PORT =", process.env.PORT);
-console.log("ENV DEBUG → DATABASE_URL =", process.env.DATABASE_URL);
-
-
 const isProduction = process.env.APP_ENV === "production";
 
 export const sequelize = new Sequelize(process.env.DATABASE_URL, {
