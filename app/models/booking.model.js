@@ -1,4 +1,4 @@
-import { sequelize } from "./index.js";
+import { sequelize } from "./sequelize.client.js";
 import { DataTypes, Model } from "sequelize";
 
 // Création du model bookings
